@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión - Sistema de Laboratorio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4 text-center">
+
+            <!-- Título e instrucciones agregados en el área señalada -->
+            <div class="mb-4">
+                <h4 class="fw-bold text-dark mb-1">
+                    💻 Inventario del Laboratorio
+                </h4>
+                <h6 class="text-secondary fw-semibold mb-2">
+                    Col. Nac. San Roque de Santacruz
+                </h6>
+                <p class="text-muted small">
+                    Inicia sesión o regístrate para comenzar a hacer tus préstamos
+                </p>
+            </div>
+
+            <!-- Card de Iniciar Sesión -->
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h5 class="mb-0 fw-bold">Iniciar Sesión</h5>
+                </div>
+                <div class="card-body p-4">
+
+                    <!-- Mensajes Flash -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show text-start" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <form action="{{ url_for('login') }}" method="POST" class="text-start">
+                        <div class="mb-3">
+                            <label class="form-label font-semibold">Cédula de Identidad</label>
+                            <input type="text" name="cedula" class="form-control" placeholder="Ej: 1234567" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label font-semibold">Contraseña</label>
+                            <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mt-2">Ingresar</button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <span class="text-muted small">¿Primera vez en el año?</span>
+                        <a href="{{ url_for('registro') }}" class="text-decoration-none fw-bold small ms-1">Regístrate aquí</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

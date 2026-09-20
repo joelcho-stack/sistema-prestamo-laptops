@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center my-4">
+    <div class="col-md-7">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white text-center py-3">
+                <h4 class="mb-0">Registro de Alumno</h4>
+            </div>
+            <div class="card-body p-4">
+                <form action="{{ url_for('registro') }}" method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cédula de Identidad</label>
+                            <input type="text" name="cedula" class="form-control" placeholder="Sin puntos" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" name="email" class="form-control" placeholder="ejemplo@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" name="nombre" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Apellido</label>
+                            <input type="text" name="apellido" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Bachillerato</label>
+                            <select name="bachillerato" class="form-select" required>
+                                <option value="BTI">BTI (Informática)</option>
+                                <option value="BTC">BTC (Contabilidad)</option>
+                                <option value="BTS">BTS (Salud)</option>
+                                <option value="BCCS">BCCS (Sociales)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Curso</label>
+                            <select name="curso" class="form-select" required>
+                                <option value="1ro">1ro</option>
+                                <option value="2do">2do</option>
+                                <option value="3ro">3ro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Turno</label>
+                            <select name="turno" class="form-select" required>
+                                <option value="manana">Mañana</option>
+                                <option value="tarde">Tarde</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Confirmar Contraseña</label>
+                            <input type="password" name="confirm_password" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2 mt-2">Crear mi Cuenta</button>
+                </form>
+            </div>
+            <div class="card-footer text-center py-3">
+                <small>¿Ya tenés cuenta? <a href="{{ url_for('login') }}">Iniciá sesión</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
