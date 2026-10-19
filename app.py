@@ -1,6 +1,7 @@
 import os
 import io
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from flask import Flask, render_template, request, redirect, url_for, flash, session, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import get_db_connection
@@ -149,7 +150,7 @@ def prestar(laptop_id):
         conn.close()
         return redirect(url_for('dashboard'))
 
-    ahora = datetime.now()
+    ahora = datetime.now(ZoneInfo("America/Asuncion"))
     fecha_hoy = ahora.strftime('%Y-%m-%d')
     hora_actual = ahora.strftime('%H:%M:%S')
 
@@ -202,7 +203,7 @@ def devolver(prestamo_id):
         conn.close()
         return redirect(url_for('dashboard'))
 
-    ahora = datetime.now()
+    ahora = datetime.now(ZoneInfo("America/Asuncion"))
     fecha_hoy = ahora.strftime('%Y-%m-%d')
     hora_actual = ahora.strftime('%H:%M:%S')
 
@@ -335,7 +336,7 @@ def exportar_pdf():
         subtexto_filtro = f" - Año {anio}"
 
     story.append(Paragraph(f"<b>Reporte Historial de Préstamos{subtexto_filtro} - Laboratorio de Informática</b>", title_style))
-    fecha_generacion = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    fecha_generacion = datetime.now(ZoneInfo("America/Asuncion")).strftime("%d/%m/%Y %H:%M:%S")
     story.append(Paragraph(f"Generado el: {fecha_generacion} | Total de registros: {len(historial)}", subtitle_style))
 
     data = [
@@ -404,4 +405,3 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
